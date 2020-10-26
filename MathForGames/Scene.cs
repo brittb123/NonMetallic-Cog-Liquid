@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MathLibrary;
 
 namespace MathForGames
 {
@@ -12,7 +13,7 @@ namespace MathForGames
 
         public Scene()
         {
-
+            _actors = new Actor[0];
         }
 
         public void AddActor(Actor actor)

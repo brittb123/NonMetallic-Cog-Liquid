@@ -13,6 +13,7 @@ namespace MathForGames
         private static bool _gameOver = false;
         private static Scene[] _scenes;
         private static int _currentSceneIndex;
+       
         public static int CurrentSceneIndex
         {
             get
@@ -20,6 +21,8 @@ namespace MathForGames
                 return _currentSceneIndex;
             }
         }
+
+        
 
         public static ConsoleColor DefaultColor { get; set; } = ConsoleColor.White;
 
@@ -196,27 +199,31 @@ namespace MathForGames
             Enemy enemyMid = new Enemy(10, 10, Color.GREEN, new Vector2(0, 10), new Vector2(30, 10), '■', ConsoleColor.Green);
             Enemy enemyLow = new Enemy(3, 20, Color.GREEN, new Vector2(0, 20), new Vector2(30, 20), '■', ConsoleColor.Green);
             Player player = new Player(0, 1,Color.BLUE, '@', ConsoleColor.Red);
-            Goal goal = new Goal(30, 20,Color.GREEN, player, 'G', ConsoleColor.Green);
+            Goal goal = new Goal(22, 20, Color.GREEN, player, 'G', ConsoleColor.Green);
 
             //Initialize the enmies starting values
             enemyHigh.Speed = 2;
-            enemyMid.Speed = 2;
+            enemyMid.Speed = 3/2;
             enemyLow.Target = player;
 
             //Set player's starting speed
-            player.Speed = 5;
+            player.Speed = 1;
 
             //Add actors to the scenes
-            scene1.AddActor(Player);
+            scene1.AddActor(player);
             scene1.AddActor(enemyHigh);
             scene1.AddActor(enemyMid);
             scene1.AddActor(enemyLow);
-            scene2.AddActor(Player);
+            scene2.AddActor(player);
+            scene1.AddActor(goal);
             
             //Sets the starting scene index and adds the scenes to the scenes array
             int startingSceneIndex = 0;
             startingSceneIndex = AddScene(scene1);
             AddScene(scene2);
+            enemyHigh.Target = player;
+            enemyMid.Target = player;
+            enemyLow.Target = player;
 
             //Sets the current scene to be the starting scene index
             SetCurrentScene(startingSceneIndex);
@@ -261,10 +268,10 @@ namespace MathForGames
         public void Run()
         {
             //Call start for all objects in game
-
+            Start();
 
             //Loops the game until either the game is set to be over or the window closes
-            while(!_gameOver || !Raylib.WindowShouldClose())
+            while(!_gameOver && !Raylib.WindowShouldClose())
             {
                 //Stores the current time between frames
                 float deltaTime = Raylib.GetFrameTime();
@@ -277,7 +284,7 @@ namespace MathForGames
                     Console.ReadKey(true);
             }
 
-            
+            End();
         }
     }
 }

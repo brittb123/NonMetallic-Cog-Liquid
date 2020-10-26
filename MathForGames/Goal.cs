@@ -41,7 +41,9 @@ namespace MathForGames
         private bool CheckPlayerDistance()
         {
             float distance = (_player.Position - Position).Magnitude;
+
             return distance <= 1;
+
         }
 
         public override void Update(float deltaTime)

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
+using MathLibrary;
 
 namespace MathLibrary
 {
@@ -35,7 +37,7 @@ namespace MathLibrary
         {
             get
             {
-                
+                return (float)Math.Sqrt(X * X + Y * Y);
             }
         }
 
@@ -68,7 +70,10 @@ namespace MathLibrary
         /// <returns></returns>
         public static Vector2 Normalize(Vector2 vector)
         {
-            
+            if (vector.Magnitude == 0)
+                return new Vector2();
+
+            return vector / vector.Magnitude;
         }
 
         /// <summary>
@@ -79,7 +84,7 @@ namespace MathLibrary
         /// <returns></returns>
         public static float DotProduct(Vector2 lhs, Vector2 rhs)
         {
-            
+            return (lhs.X * rhs.X) + (lhs.Y * rhs.Y);
         }
 
         public static Vector2 operator +(Vector2 lhs, Vector2 rhs)
@@ -92,9 +97,9 @@ namespace MathLibrary
             return new Vector2(lhs.X - rhs.X, lhs.Y - rhs.Y);
         }
 
-        public static Vector2 operator *(Vector2 lhs, float scalar)
+        public static Vector2 operator *(Vector2 lhs, float scaler)
         {
-            
+            return new Vector2((lhs.X * scaler), (lhs.Y * scaler));
         }
 
         public static Vector2 operator /(Vector2 lhs, float scalar)

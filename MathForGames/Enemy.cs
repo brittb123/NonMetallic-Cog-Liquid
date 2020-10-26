@@ -142,10 +142,13 @@ namespace MathForGames
         {
             //If the target can be seen change the color to red and reset the player's position
             //If the target can't be seen change the color to blue
-            if(CheckTargetInSight(1.5f, 5))
+            if(CheckTargetInSight(1.5f, 3))
             {
                 _rayColor = Color.RED;
-                Target.Position = new Vector2();
+             
+               Target.Position = new Vector2();
+                 
+
             }
             else
             {
