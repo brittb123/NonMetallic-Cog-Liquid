@@ -203,7 +203,9 @@ namespace MathForGames
 
             //Initialize the enmies starting values
             enemyHigh.Speed = 2;
+            enemyHigh.Target = player;
             enemyMid.Speed = 3/2;
+            enemyMid.Target = player;
             enemyLow.Target = player;
 
             //Set player's starting speed

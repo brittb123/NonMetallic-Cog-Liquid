@@ -101,7 +101,7 @@ namespace MathForGames
         {
             //Checks if the target has a value before continuing
             if (Target == null)
-                return true;
+                return false;
 
             //Find the vector representing the distance between the actor and its target
             Vector2 direction = Position - Target.Position;
